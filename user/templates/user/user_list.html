@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Avatar</th>
+      <th>Contact Number</th>
+      <th>Nickname</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+      <tr>
+        <td><img src="{{ user.avatar.url }}" alt="{{ user.nickname }}'s Avatar"></td>
+        <td>{{ user.contact_number }}</td>
+        <td>{{ user.nickname }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+          <a href="{% url 'user_update' user.pk %}">Update</a>
+          <a href="{% url 'user_delete' user.pk %}">Delete</a>
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="5">No users found.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
